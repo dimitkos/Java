@@ -25,4 +25,10 @@ public class SavingsAccount extends BankAccount
         balance=balance+interest;
 
     }
+
+    public void printData()
+    {
+        System.out.println("Savings Bank Acoount");
+        System.out.println("Balance is:"+balance+" rate "+ InterestRate);
+    }
 }

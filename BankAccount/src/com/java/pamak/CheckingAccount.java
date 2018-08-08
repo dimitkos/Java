@@ -28,4 +28,10 @@ public class CheckingAccount extends BankAccount {
     {
         balance=balance-0.5;
     }
+
+    public void printData()
+    {
+        System.out.println("Checking Bank Acoount");
+        System.out.println("Balance is:"+balance+" free limit: 3 trans.");
+    }
 }

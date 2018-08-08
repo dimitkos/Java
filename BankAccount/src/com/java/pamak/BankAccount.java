@@ -8,12 +8,15 @@ public class BankAccount {
     public  BankAccount()
     {
 
+
     }
 
     public BankAccount(double amount)
     {
         balance= amount;
     }
+
+    //epistrefei to poso tou logariasmou
 
     public double getBalance() {
         return balance;
@@ -29,5 +32,12 @@ public class BankAccount {
     @Override
     public String toString() {
         return ("Balance: "+balance);
+    }
+
+    //mia methodos poy tha typwnei plirofories
+    public void printData()
+    {
+        System.out.println("Normal Bank Acoount");
+        System.out.println("Balance is:"+balance);
     }
 }
