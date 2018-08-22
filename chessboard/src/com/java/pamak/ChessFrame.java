@@ -2,6 +2,8 @@ package com.java.pamak;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ChessFrame extends JFrame {
 
@@ -12,6 +14,11 @@ public class ChessFrame extends JFrame {
     {
         panel= new BoardPanel();
         this.setContentPane(panel);
+
+
+        MouseclickListener listener= new MouseclickListener();
+
+        panel.addMouseListener(listener);
 
         //me aythn thn methodokanoume orato to parathyro sthn othonh otan kalestei o kataskeyasths ths
         this.setVisible(true);
@@ -29,6 +36,18 @@ public class ChessFrame extends JFrame {
     class BoardPanel extends JPanel{
         private static  final int ROWS=8;
         private static  final int COLUMNS=8;
+        private int xCoord=50;
+        private int yCoord=50;
+
+        //efodiazei tis klaseis me methodous pou mou epitrepoun na allaksw tis syntetagmenes
+        //ayto tha to criastw sto click event opoy thelw na metakinisw to pioni
+        public void setxCoord(int xCoord) {
+            this.xCoord = xCoord;
+        }
+
+        public void setyCoord(int yCoord) {
+            this.yCoord = yCoord;
+        }
 
         //epi tou antikeimenou g mporw na kalesw methodous px na sxediaozun grammes
         public  void paintComponent(Graphics g)
@@ -43,15 +62,62 @@ public class ChessFrame extends JFrame {
                     int y= i*sqSize;
 
                     g.drawRect(x,y,sqSize,sqSize);
-                    if((i+j)%2==0)
+                    if((i+j)%2!=0)
                     {
+                        g.setColor(Color.BLUE);
+                        g.fillRect(x,y,sqSize,sqSize);
+                    }
+                    else
+                    {
+                        g.setColor(Color.YELLOW);
                         g.fillRect(x,y,sqSize,sqSize);
                     }
                 }
+
+                //ftiaxnoume mia eleipsh opou tha einai me kokkino xrwma kai tha paizei ton rolo pioniou
+                g.setColor(Color.RED);
+                g.fillOval(xCoord,yCoord,40,40);
             }
 
         }
 
 
+    }
+    class MouseclickListener implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            int x=e.getX();
+            int y=e.getY();
+
+            panel.setxCoord(x-20);
+            panel.setyCoord(y-20);
+
+            //ksanasxeiazoume thn skakiera kai to pioni kathe fora pou ginei mouseclick
+            panel.repaint();
+
+
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
     }
 }
